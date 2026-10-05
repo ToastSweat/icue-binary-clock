@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tr('Atomic Binary Clock')</title>
+  <link rel="icon" type="image/svg+xml" href="resources/icon.svg" />
+  <link rel="stylesheet" href="styles/clock.css" />
+  <meta name="x-icue-property" content="clockMode" data-label="tr('Binary mode')" data-type="combobox" data-default="'bcd'" data-values="[{'key':'bcd','value':tr('Digit by digit (BCD)')},{'key':'binary','value':tr('Whole values (binary)')}]" />
+  <meta name="x-icue-property" content="hourFormat" data-label="tr('Time format')" data-type="combobox" data-default="'24'" data-values="[{'key':'24','value':tr('24 hour')},{'key':'12','value':tr('12 hour')}]" />
+  <meta name="x-icue-property" content="timeZone" data-label="tr('Time zone')" data-type="combobox" data-default="'local'" data-values="[{'key':'local','value':tr('System local time')},{'key':'utc','value':tr('UTC')}]" />
+  <meta name="x-icue-property" content="showSeconds" data-label="tr('Show seconds')" data-type="switch" data-default="true" />
+  <meta name="x-icue-property" content="textEnabled" data-label="tr('Show text')" data-type="switch" data-default="true" />
+  <meta name="x-icue-property" content="showNumbers" data-label="tr('Show numeric time')" data-type="switch" data-default="true" />
+  <meta name="x-icue-property" content="showLabels" data-label="tr('Show labels')" data-type="switch" data-default="true" />
+  <meta name="x-icue-property" content="showWeights" data-label="tr('Show bit weights')" data-type="switch" data-default="false" />
+  <meta name="x-icue-property" content="textColor" data-label="tr('Text color')" data-type="color" data-default="'#F0E8FF'" />
+  <meta name="x-icue-property" content="accentColor" data-label="tr('Lit block color')" data-type="color" data-default="'#B784FF'" />
+  <meta name="x-icue-property" content="backgroundColor" data-label="tr('Background color')" data-type="color" data-default="'#100D16'" />
+  <meta name="x-icue-property" content="transparency" data-label="tr('Widget Transparency')" data-type="slider" data-default="80" data-min="0" data-max="100" data-step="1" data-unit-label="'%'" />
+  <meta name="x-icue-property" content="offColor" data-label="tr('Unlit block color')" data-type="color" data-default="'#292132'" />
+  <meta name="x-icue-property" content="blockSize" data-label="tr('Block size')" data-type="slider" data-default="100" data-min="50" data-max="125" data-step="5" data-unit-label="'%'" />
+  <meta name="x-icue-property" content="blockGap" data-label="tr('Block spacing')" data-type="slider" data-default="14" data-min="0" data-max="30" data-step="1" data-unit-label="'%'" />
+  <meta name="x-icue-property" content="groupGap" data-label="tr('Group spacing')" data-type="slider" data-default="45" data-min="0" data-max="80" data-step="5" data-unit-label="'%'" />
+  <meta name="x-icue-property" content="brightness" data-label="tr('Lit block brightness')" data-type="slider" data-default="100" data-min="20" data-max="100" data-step="5" data-unit-label="'%'" />
+  <script type="application/json" id="x-icue-groups">
+[
+  {
+    "title": "tr('Clock Settings')",
+    "properties": [
+      "clockMode",
+      "hourFormat",
+      "timeZone",
+      "showSeconds",
+      "textEnabled",
+      "showNumbers",
+      "showLabels",
+      "showWeights"
+    ],
+    "info": "tr('Blocks use the system clock. BCD encodes each digit; binary encodes hours, minutes and seconds as whole values.')"
+  },
+  {
+    "title": "tr('Widget Personalization')",
+    "properties": [
+      "textColor",
+      "accentColor",
+      "backgroundColor",
+      "transparency",
+      "offColor",
+      "blockSize",
+      "blockGap",
+      "groupGap",
+      "brightness"
+    ]
+  }
+]
+  </script>
+</head>
+<body>
+  <div id="widget-background" aria-hidden="true"></div>
+  <main class="clock" aria-label="Binary clock">
+    <header id="mode-label"><span>BINARY CLOCK</span><span id="encoding">/ BCD</span></header>
+    <div id="board" class="board" role="img" aria-label="Current time in binary"></div>
+    <div id="readout"><time id="time"></time><span id="period"></span></div>
+  </main>
+  <script src="scripts/clock-core.js"></script>
+  <script src="scripts/widget.js"></script>
+  <script>
+    // Bare assignment is required for the iCUE runtime bridge.
+    icueEvents = {
+      onICUEInitialized: window.AtomicBinaryClockRuntime.start,
+      onDataUpdated: window.AtomicBinaryClockRuntime.applySettings
+    };
+  </script>
+</body>
+</html>

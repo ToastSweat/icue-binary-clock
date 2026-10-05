@@ -1,0 +1,102 @@
+:root {
+  --text-color: #f0e8ff;
+  --accent-color: #b784ff;
+  --background-color: #100d16;
+  --off-color: #292132;
+  --brightness: 1;
+  --widget-opacity: 0.8;
+  --cell-factor: 9;
+  --gap-factor: 1.26;
+  --group-gap-factor: 4.05;
+  --landscape-width: 78;
+  --landscape-height: 73;
+  --portrait-width: 52;
+  --portrait-height: 109;
+  --padding-factor: 5;
+  --group-min-width-factor: 12;
+  --portrait-limit: 6.96px;
+  --layout-unit: min(calc(100vw / var(--landscape-width)), calc(100vh / var(--landscape-height)));
+  --cell: calc(var(--layout-unit) * var(--cell-factor));
+  --cell-gap: calc(var(--layout-unit) * var(--gap-factor));
+  --group-gap: calc(var(--layout-unit) * var(--group-gap-factor));
+  --padding: calc(var(--layout-unit) * var(--padding-factor));
+  --section-gap: calc(var(--layout-unit) * 4);
+  --label-size: calc(var(--layout-unit) * 2.4);
+  --number-size: calc(var(--layout-unit) * 6.5);
+  --weight-size: calc(var(--layout-unit) * 1.9);
+  --edge: max(1px, calc(var(--layout-unit) * 0.18));
+}
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: transparent; }
+body {
+  background: transparent;
+  color: var(--text-color);
+  font-family: Consolas, "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+#widget-background {
+  position: fixed; inset: 0; z-index: 0;
+  background: var(--background-color);
+  opacity: var(--widget-opacity);
+  pointer-events: none;
+}
+.clock {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%; padding: var(--padding);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  gap: var(--section-gap);
+}
+#mode-label {
+  display: flex; align-items: center; justify-content: center;
+  gap: calc(var(--layout-unit) * 2);
+  font-size: var(--label-size); line-height: 1.2;
+  letter-spacing: calc(var(--layout-unit) * 0.25);
+  font-weight: 700; white-space: nowrap;
+}
+#encoding { opacity: 0.65; }
+.board { display: flex; align-items: flex-start; justify-content: center; gap: var(--group-gap); }
+.group {
+  display: flex; flex-direction: column; align-items: center;
+  min-width: calc(var(--layout-unit) * var(--group-min-width-factor));
+  gap: calc(var(--layout-unit) * 2);
+}
+.group-label {
+  font-size: var(--label-size); font-weight: 700; line-height: 1.2;
+  opacity: 0.8; letter-spacing: calc(var(--layout-unit) * 0.15);
+  white-space: nowrap;
+}
+.columns { display: flex; align-items: center; gap: var(--cell-gap); }
+.digit { display: flex; flex-direction: column; gap: var(--cell-gap); }
+.bit {
+  flex: 0 0 auto; width: var(--cell); height: var(--cell);
+  display: flex; justify-content: center; align-items: center;
+  border: var(--edge) solid var(--off-color);
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 0;
+}
+.bit.on {
+  background: var(--accent-color); border-color: var(--accent-color);
+  color: var(--background-color); opacity: var(--brightness);
+}
+.weight { display: none; font-size: var(--weight-size); line-height: 1; font-weight: 700; }
+body[data-weights="true"] .weight { display: inline; }
+#readout { display: flex; align-items: baseline; gap: calc(var(--layout-unit) * 1.5); white-space: nowrap; }
+#time { font-size: var(--number-size); font-weight: 700; line-height: 1.2; letter-spacing: calc(var(--layout-unit) * 0.2); }
+#period { font-size: var(--label-size); font-weight: 700; line-height: 1.2; opacity: 0.8; }
+#period:empty { display: none; }
+body[data-numbers="false"] #readout { display: none; }
+body[data-labels="false"] #mode-label,
+body[data-labels="false"] .group-label { display: none; }
+/* Portrait slots read highest-bit first from left to right, rather than top to bottom. */
+@media (max-aspect-ratio: 3/4) {
+  :root {
+    --layout-unit: min(calc(100vw / var(--portrait-width)), calc(100vh / var(--portrait-height)), var(--portrait-limit));
+  }
+  .board { flex-direction: column; align-items: center; gap: var(--group-gap); }
+  .columns { flex-direction: column; }
+  .digit { flex-direction: row; }
+}

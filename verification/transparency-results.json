@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "property": "transparency",
+  "mapping": "background opacity = clamped transparency / 100, matching bundled Corsair widgets",
+  "readings": [
+    {
+      "input": 0,
+      "backgroundOpacity": 0
+    },
+    {
+      "input": 25,
+      "backgroundOpacity": 0.25
+    },
+    {
+      "input": 50,
+      "backgroundOpacity": 0.5
+    },
+    {
+      "input": 75,
+      "backgroundOpacity": 0.75
+    },
+    {
+      "input": 100,
+      "backgroundOpacity": 1
+    },
+    {
+      "input": -10,
+      "backgroundOpacity": 0
+    },
+    {
+      "input": 110,
+      "backgroundOpacity": 1
+    }
+  ],
+  "foregroundUnchanged": true,
+  "rootAndBodyTransparent": true,
+  "lexicalGlobals": true,
+  "independentBrightness": true,
+  "hostSample": {
+    "x": 4,
+    "y": 4
+  },
+  "blockSample": {
+    "x": 287,
+    "y": 195
+  },
+  "browserErrors": [],
+  "hardwareTested": false
+}

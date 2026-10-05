@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "layoutChecks": 48,
+  "sizes": [
+    [
+      840,
+      344
+    ],
+    [
+      696,
+      416
+    ],
+    [
+      840,
+      696
+    ],
+    [
+      696,
+      840
+    ],
+    [
+      1688,
+      696
+    ],
+    [
+      696,
+      1688
+    ],
+    [
+      2536,
+      696
+    ],
+    [
+      696,
+      2536
+    ]
+  ],
+  "clockModes": [
+    "bcd",
+    "binary"
+  ],
+  "settingsBridge": "simulated documented iCUE globals/callbacks, including lexical bindings",
+  "checked": [
+    "wall-clock rollover",
+    "live colors",
+    "brightness",
+    "zero spacing",
+    "hidden labels and numbers",
+    "12-hour AM/PM",
+    "seconds toggle",
+    "bit weights",
+    "repeated initialization"
+  ],
+  "browserErrors": [],
+  "networkRequests": [],
+  "hardwareTested": false
+}

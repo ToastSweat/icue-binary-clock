@@ -1,0 +1,33 @@
+{
+  "en": {
+    "translation": {
+      "12 hour": "12 hour",
+      "24 hour": "24 hour",
+      "Atomic Binary Clock": "Atomic Binary Clock",
+      "Background color": "Background color",
+      "Binary mode": "Binary mode",
+      "Block size": "Block size",
+      "Block spacing": "Block spacing",
+      "Blocks use the system clock. BCD encodes each digit; binary encodes hours, minutes and seconds as whole values.": "Blocks use the system clock. BCD encodes each digit; binary encodes hours, minutes and seconds as whole values.",
+      "Clock Settings": "Clock Settings",
+      "Digit by digit (BCD)": "Digit by digit (BCD)",
+      "Group spacing": "Group spacing",
+      "Lit block brightness": "Lit block brightness",
+      "Lit block color": "Lit block color",
+      "Show bit weights": "Show bit weights",
+      "Show labels": "Show labels",
+      "Show numeric time": "Show numeric time",
+      "Show seconds": "Show seconds",
+      "System local time": "System local time",
+      "Show text": "Show text",
+      "Text color": "Text color",
+      "Time format": "Time format",
+      "Time zone": "Time zone",
+      "UTC": "UTC",
+      "Unlit block color": "Unlit block color",
+      "Whole values (binary)": "Whole values (binary)",
+      "Widget Personalization": "Widget Personalization",
+      "Widget Transparency": "Widget Transparency"
+    }
+  }
+}
